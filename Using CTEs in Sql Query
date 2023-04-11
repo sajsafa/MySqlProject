@@ -1,27 +1,43 @@
-WITH total_amount_paid_cte (customer_id, first_name, last_name, total_payment, city, country) AS 
-
-(SELECT A.customer_id, A.first_name, A.last_name, SUM(amount) AS total_payment, C.city, D.country   
-
-FROM customer A   
-
-INNER JOIN address B ON A.address_id = B.address_id   
-
-INNER JOIN city C ON B.city_id = C.city_id   
-
-INNER JOIN country D ON C.country_id = D.country_id   
-
-INNER JOIN payment E ON A.customer_id = E.customer_id   
-
-WHERE C.city IN ('Aurora', 'Luzinia', 'Celaya', 'Greensboro', 'Kumbakonam',   
-
- 'Kamarhati', 'Hiroshima', 'Usak', 'Ljubertsy', 'Purnea (Purnia)')   
-
-GROUP BY A.customer_id , C.city, D.country   
-
-ORDER BY SUM(amount) DESC   
-
-LIMIT 5) 
-
-SELECT AVG(total_amount_paid_cte.total_payment)AS average  
-
-FROM total_amount_paid_cte; 
+WITH total_amount_paid_cte
+     (
+          customer_id,
+          first_name,
+          last_name,
+          total_payment,
+          city,
+          country
+     )
+     AS
+     (
+                SELECT     a.customer_id,
+                           a.first_name,
+                           a.last_name,
+                           Sum(amount) AS total_payment,
+                           c.city,
+                           d.country
+                FROM       customer A
+                INNER JOIN address B
+                ON         a.address_id = b.address_id
+                INNER JOIN city C
+                ON         b.city_id = c.city_id
+                INNER JOIN country D
+                ON         c.country_id = d.country_id
+                INNER JOIN payment E
+                ON         a.customer_id = e.customer_id
+                WHERE      c.city IN ('Aurora',
+                                      'Luzinia',
+                                      'Celaya',
+                                      'Greensboro',
+                                      'Kumbakonam',
+                                      'Kamarhati',
+                                      'Hiroshima',
+                                      'Usak',
+                                      'Ljubertsy',
+                                      'Purnea (Purnia)')
+                GROUP BY   a.customer_id ,
+                           c.city,
+                           d.country
+                ORDER BY   Sum(amount) DESC limit 5
+     )
+SELECT Avg(total_amount_paid_cte.total_payment)AS average
+FROM   total_amount_paid_cte;
