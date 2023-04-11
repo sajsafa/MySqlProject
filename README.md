@@ -5,5 +5,5 @@
 ## Data
 #### www.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip
 ## Project Visualization
-####  xhref:https://public.tableau.com/app/profile/shirin3755/viz/3_10Geographicdistributionofcustomerandpayment/Sheet1[Here] you can find the project visualization 
+####  xref:https://public.tableau.com/app/profile/shirin3755/viz/3_10Geographicdistributionofcustomerandpayment/Sheet1[Here] you can find the project visualization 
 
