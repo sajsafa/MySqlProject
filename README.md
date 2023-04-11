@@ -1,1 +1,1 @@
-# MySqlProject
+# PostgreSqlProject
